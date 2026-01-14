@@ -1,64 +1,44 @@
 # Tarea Dev Junior - Ruuf
 
-## 🎯 Objetivo
+## 🚀 Ejecución
 
-El objetivo de este ejercicio es poder entender tus habilidades como programador/a, la forma en que planteas un problema, cómo los resuelves y finalmente cómo comunicas tu forma de razonar y resultados.
-
-## 🛠️ Problema
-
-El problema a resolver consiste en encontrar la máxima cantidad de rectángulos de dimensiones "a" y "b" (paneles solares) que caben dentro de un rectángulo de dimensiones "x" e "y" (techo).
-
-## 🚀 Cómo Empezar
-
-### Opción 1: Solución en TypeScript
+### Opción 1: Solución en TypeScript sin display
 ```bash
-cd typescript
 npm install
 npm start
 ```
 
-### Opción 2: Solución en Python
+### Opción 1: Solución en TypeScript con display
 ```bash
-cd python
-python3 main.py
+npm install express
+npx ts-node main_w_display.ts
 ```
-
-## ✅ Casos de Prueba
-
-Tu solución debe pasar los siguientes casos de prueba:
-- Paneles 1x2 y techo 2x4 ⇒ Caben 4
-- Paneles 1x2 y techo 3x5 ⇒ Caben 7
-- Paneles 2x2 y techo 1x10 ⇒ Caben 0
-
 ---
 
-## 📝 Tu Solución
+## 📝 Solución
 
-Deja acá el link a tu video explicando tu solución con tus palabras
+Link del video explicando: https://youtu.be/68g3rhjt_ww
 
 ---
 
 ## 💰 Bonus (Opcional)
 
-Si completaste alguno de los ejercicios bonus, explica tu solución aquí:
-
 ### Bonus Implementado
-*[Indica cuál bonus implementaste: Opción 1 (techo triangular) o Opción 2 (rectángulos superpuestos)]*
 
-
-
+Implemente el bonus 1, un techo triangular, asumiendo que la base sería roof_width y la altura roof_height, y ademas que roof_width seria impar y que roof_height seria lo suficientemente grande como para no truncar el triangulo.
 
 ### Explicación del Bonus
-*[Explica cómo adaptaste tu algoritmo para resolver el bonus]*
 
+Hubo dos alteraciones que se realizaron para resolver el bonus:
+- Se agregó un booleano para decidir qué tipo de techo se requiere.
+- Se agregó una sección que modifica las grillas de techo para rellenar los espacios no válidos con -1 y los que si son validos con 0, formando un triangulo isósceles cuyo vertice superior esta en el centro de la primera fila.
 
-
+Una vez hecho esto, la logica es la misma que en el caso rectangular.
 
 ---
 
 ## 🤔 Supuestos y Decisiones
 
-*[Si tuviste que tomar algún supuesto o decisión de diseño, explícalo aquí]*
-
-# Postulacion-Ruuf-Gabriel-Vega
-Solución al problema de "¿Cuántos paneles caben?" para la postulación de Ruuf.
+Hubo dos supuestos que se usaron al resolver el ejercicio:
+- Los paneles solo pueden ir de manera horizontal o vertical, pues el agregar rotaciones adicionales aumenta la dificultad de una manera muy alta para el tiempo dado.
+- Llenar el espacio con todos los paneles posibles en una dirección y luego en la otra resultará en la máxima cantidad de paneles.
