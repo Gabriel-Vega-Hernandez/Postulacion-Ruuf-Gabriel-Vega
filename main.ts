@@ -2,32 +2,32 @@ import * as fs from 'fs';
 import { panel_positioning } from './functions';
 
 interface TestCase {
-  panelW: number;
-  panelH: number;
-  roofW: number;
-  roofH: number;
-  expected: number;
+    panelW: number;
+    panelH: number;
+    roofW: number;
+    roofH: number;
+    expected: number;
 }
 
 interface TestData {
-  testCases: TestCase[];
+    testCases: TestCase[];
 }
 
 function calculatePanels(
-  panelWidth: number,
-  panelHeight: number,
-  roofWidth: number,
-  roofHeight: number
+    panelWidth: number,
+    panelHeight: number,
+    roofWidth: number,
+    roofHeight: number
 ): number {
 
-  const rectangular: boolean = true;
+    const triangular: boolean = false;
 
     // Definimos dos grilla que representan nuestro techo, actualmente no tienen ningun espacio disponible
     let roof_1: number[][];
     let roof_2: number[][];
 
     // En caso de que el techo sea rectangular, llenamos toda la grilla con espacios disponibles
-    if (rectangular){
+    if (!triangular){
         roof_1 = Array.from({ length: roofHeight }, () => Array(roofWidth).fill(0));
         roof_2 = Array.from({ length: roofHeight }, () => Array(roofWidth).fill(0));
     }
@@ -44,7 +44,6 @@ function calculatePanels(
                 roof_1[i][j] = 0;
                 roof_2[i][j] = 0;
             }
-
         }
     }
 
@@ -70,7 +69,7 @@ function calculatePanels(
     }
     
     if (horizontal[0]!=0 && horizontal[1]!=0){
-            [n_total_2, roof_2] = panel_positioning([panelWidth, panelHeight], roof_2, n_total_2);
+        [n_total_2, roof_2] = panel_positioning([panelWidth, panelHeight], roof_2, n_total_2);
     }
 
     // Revisamos cual configuracion es mejor
@@ -83,28 +82,28 @@ function calculatePanels(
 }
 
 function main(): void {
-  console.log("🐕 Wuuf wuuf wuuf 🐕");
-  console.log("================================\n");
-  
-  runTests();
+    console.log("🐕 Wuuf wuuf wuuf 🐕");
+    console.log("================================\n");
+    
+    runTests();
 }
 
 function runTests(): void {
-  const data: TestData = JSON.parse(fs.readFileSync('test_cases.json', 'utf-8'));
-  const testCases = data.testCases;
-  
-  console.log("Corriendo tests:");
-  console.log("-------------------");
-  
-  testCases.forEach((test: TestCase, index: number) => {
-    const result = calculatePanels(test.panelW, test.panelH, test.roofW, test.roofH);
-    const passed = result === test.expected;
+    const data: TestData = JSON.parse(fs.readFileSync('test_cases.json', 'utf-8'));
+    const testCases = data.testCases;
     
-    console.log(`Test ${index + 1}:`);
-    console.log(`  Panels: ${test.panelW}x${test.panelH}, Roof: ${test.roofW}x${test.roofH}`);
-    console.log(`  Expected: ${test.expected}, Got: ${result}`);
-    console.log(`  Status: ${passed ? "✅ PASSED" : "❌ FAILED"}\n`);
-  });
+    console.log("Corriendo tests:");
+    console.log("-------------------");
+    
+    testCases.forEach((test: TestCase, index: number) => {
+        const result = calculatePanels(test.panelW, test.panelH, test.roofW, test.roofH);
+        const passed = result === test.expected;
+        
+        console.log(`Test ${index + 1}:`);
+        console.log(`  Panels: ${test.panelW}x${test.panelH}, Roof: ${test.roofW}x${test.roofH}`);
+        console.log(`  Expected: ${test.expected}, Got: ${result}`);
+        console.log(`  Status: ${passed ? "✅ PASSED" : "❌ FAILED"}\n`);
+    });
 }
 
 main();

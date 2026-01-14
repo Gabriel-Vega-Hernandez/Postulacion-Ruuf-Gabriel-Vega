@@ -60,3 +60,5 @@ Si completaste alguno de los ejercicios bonus, explica tu solución aquí:
 
 *[Si tuviste que tomar algún supuesto o decisión de diseño, explícalo aquí]*
 
+# Postulacion-Ruuf-Gabriel-Vega
+Solución al problema de "¿Cuántos paneles caben?" para la postulación de Ruuf.

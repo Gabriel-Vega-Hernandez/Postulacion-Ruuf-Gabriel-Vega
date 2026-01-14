@@ -23,14 +23,14 @@ function calculatePanels(
     roofHeight: number
 ): [number, number[][]] {
 
-    const rectangular: boolean = true;
+    const triangular: boolean = false;
 
     // Definimos dos grilla que representan nuestro techo, actualmente no tienen ningun espacio disponible
     let roof_1: number[][];
     let roof_2: number[][];
 
-    // En caso de que el techo sea rectangular, llenamos toda la grilla con espacios disponibles
-    if (rectangular){
+    // En caso de que el techo sea triangular, llenamos toda la grilla con espacios disponibles
+    if (!triangular){
         roof_1 = Array.from({ length: roofHeight }, () => Array(roofWidth).fill(0));
         roof_2 = Array.from({ length: roofHeight }, () => Array(roofWidth).fill(0));
     }
@@ -47,7 +47,6 @@ function calculatePanels(
                 roof_1[i][j] = 0;
                 roof_2[i][j] = 0;
             }
-
         }
     }
 
@@ -106,7 +105,6 @@ function runTests(): void {
         let [result, roof] = calculatePanels(test.panelW, test.panelH, test.roofW, test.roofH);
         const passed = result === test.expected;
         list_of_roofs.push(roof);
-        console.log(roof);
         
         console.log(`Test ${index + 1}:`);
         console.log(`  Panels: ${test.panelW}x${test.panelH}, Roof: ${test.roofW}x${test.roofH}`);
